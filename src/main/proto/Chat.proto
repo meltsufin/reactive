@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package com.mycompany.app;
+
+option java_package = "com.mycompany.app.api";
+option java_outer_classname = "ChatProto";
+
+
+service Chat {
+    rpc PostMessage (ChatMessage) returns (Empty) {}
+    rpc GetMessages (Empty) returns (stream ChatMessage) {}
+    rpc PostMessages (stream ChatMessage) returns (Empty) {}
+    rpc Chat (stream ChatMessage) returns (stream ChatMessage) {}
+}
+
+message ChatMessage {
+    int64 when = 1;
+    string author = 2;
+    string message = 3;
+}
+
+message Empty {}
+
+message PostMessageMessagesResponse {}
