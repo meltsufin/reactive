@@ -3,6 +3,7 @@ package com.mycompany.app;
 import com.google.common.base.Stopwatch;
 import com.mycompany.app.api.ChatGrpc;
 import com.mycompany.app.api.ChatGrpc.ChatBlockingStub;
+import com.mycompany.app.api.ChatGrpc.ChatFutureStub;
 import com.mycompany.app.api.ChatGrpc.ChatStub;
 import com.mycompany.app.api.ChatProto.ChatMessage;
 import com.mycompany.app.api.ChatProto.Empty;
@@ -36,6 +37,8 @@ public class ChatGrpcTest {
   private Server server;
 
   private ChatBlockingStub blockingClient;
+
+  private ChatFutureStub futureStub;
 
   private ChatStub asyncClient;
 
@@ -74,6 +77,7 @@ public class ChatGrpcTest {
 
     // Create blocking and async stubs using the channel
     this.blockingClient = ChatGrpc.newBlockingStub(channel);
+    this.futureStub = ChatGrpc.newFutureStub(channel);
     this.asyncClient = ChatGrpc.newStub(channel);
   }
 
